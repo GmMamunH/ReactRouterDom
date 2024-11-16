@@ -31,8 +31,8 @@ export const NavBar = () => {
               to={link}
               className={`${
                 isLogin
-                  ? "text-white bg-blue-600 px-4 py-1 rounded-lg hover:bg-blue-700"
-                  : "text-white font-medium text-lg hover:text-blue-400 transition duration-300"
+                  ? "text-white bg-blue-600 px-4 py-1 rounded-lg hover:bg-blue-700 duration-700"
+                  : "text-white font-medium text-lg hover:text-blue-400 transition duration-700"
               }`}
             >
               {name}
