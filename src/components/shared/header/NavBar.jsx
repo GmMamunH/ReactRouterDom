@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navBar = [
     { id: 1, name: "Home", link: "/" },
     { id: 2, name: "About", link: "about" },
     { id: 3, name: "Services", link: "services" },
     { id: 4, name: "Contact", link: "contact" },
-    { id: 5, name: "Login", link: "auth", isLogin: true },
+    { id: 5, name: "Clients", link: "clients" },
+    { id: 6, name: "Login", link: "sign-in", isLogin: true },
   ];
 
   const toggleMenu = () => {
@@ -26,17 +28,21 @@ export const NavBar = () => {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex space-x-8">
           {navBar.map(({ id, name, link, isLogin }) => (
-            <Link
+            <NavLink
               key={id}
               to={link}
-              className={`${
-                isLogin
-                  ? "text-white bg-blue-600 px-4 py-1 rounded-lg hover:bg-blue-700 duration-700"
-                  : "text-white font-medium text-lg hover:text-blue-400 transition duration-700"
-              }`}
+              className={({ isActive }) =>
+                `${
+                  isLogin
+                    ? "text-white bg-blue-600 px-4 py-1 rounded-lg hover:bg-blue-700 duration-700"
+                    : "text-white font-medium text-lg hover:text-blue-400 transition duration-700"
+                } ${
+                  isActive ? "underline underline-offset-4 text-blue-400" : ""
+                }`
+              }
             >
               {name}
-            </Link>
+            </NavLink>
           ))}
         </div>
 
@@ -64,18 +70,22 @@ export const NavBar = () => {
         </div>
         <div className="flex flex-col items-center space-y-6">
           {navBar.map(({ id, name, link, isLogin }) => (
-            <Link
+            <NavLink
               key={id}
               to={link}
-              className={`${
-                isLogin
-                  ? "text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
-                  : "text-white text-2xl font-medium hover:text-blue-400 transition duration-300"
-              }`}
+              className={({ isActive }) =>
+                `${
+                  isLogin
+                    ? "text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
+                    : "text-white text-2xl font-medium hover:text-blue-400 transition duration-300"
+                } ${
+                  isActive ? "underline underline-offset-4 text-blue-400" : ""
+                }`
+              }
               onClick={() => setIsMenuOpen(false)} // Close the menu on click
             >
               {name}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>

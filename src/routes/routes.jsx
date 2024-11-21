@@ -3,9 +3,13 @@ import App from "../App";
 import { HomePage } from "../pages/HomePage";
 import { AboutUs } from "../pages/AboutUs";
 import { ContactUs } from "../pages/ContactUs";
-import { Auth } from "../pages/Auth";
+import { SignIn } from "../pages/auth/SIgnIn";
 import { NotFount } from "../pages/NotFount";
 import { Service } from "../pages/Service";
+import { Clients } from "../pages/Clients";
+import { ClientPost } from "../components/clients/ClientPost";
+import { loadPostData, loadUserData } from "../utils/utils";
+import { SignUp } from "../pages/auth/SignUp";
 
 const routes = createBrowserRouter([
   {
@@ -16,9 +20,20 @@ const routes = createBrowserRouter([
       { path: "about", element: <AboutUs /> },
       { path: "contact", element: <ContactUs /> },
       { path: "services", element: <Service /> },
+      {
+        path: "clients",
+        element: <Clients />,
+        loader: loadUserData,
+      },
+      {
+        path: "clients/:clientId",
+        element: <ClientPost />,
+        loader: ({ params }) => loadPostData(params.clientId),
+      },
     ],
   },
-  { path: "auth", element: <Auth /> },
+  { path: "sign-in", element: <SignIn /> },
+  { path: "sign-up", element: <SignUp /> },
   { path: "*", element: <NotFount /> },
 ]);
 export default routes;
